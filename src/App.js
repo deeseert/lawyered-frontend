@@ -4,9 +4,10 @@ import { Route, Switch, withRouter } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import SignInForm from "./pages/SignInForm";
-import SignUpForm from './pages/SignUpForm'
+import SignUpForm from "./pages/SignUpForm";
 import Dashboard from "./pages/Dashboard";
 import NavBar from "./components/NavBar";
+import LawyerList from "./components/LawyerList";
 
 import API from "./API";
 
@@ -14,7 +15,22 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    username: ""
+    username: "",
+    searchValue: "",
+    lawyers: [],
+    selectedLawyer: null
+  };
+
+  addToMyDashboard = lawyer => {
+    console.log("Add Lawyer to your dashboard successfully clicked!");
+  };
+
+  selectLawyer = lawyer => {
+    this.setState({ selectedLawyer: lawyer });
+  };
+
+  deselectLawyer = () => {
+    this.setState({ selectedLawyer: null });
   };
 
   signin = (username, token) => {
@@ -41,13 +57,16 @@ class App extends Component {
         this.props.history.push("/signin");
       } else {
         this.signin(data.username, localStorage.getItem("token"));
+        fetch("http://localhost:3000/lawyers")
+          .then(resp => resp.json())
+          .then(lawyers => this.setState({ lawyers }));
       }
     });
   }
 
   render() {
     const { signin, signout } = this;
-    const { username } = this.state;
+    const { username, lawyers } = this.state;
 
     return (
       <div className="App">
@@ -61,10 +80,26 @@ class App extends Component {
               <SignInForm {...props} signin={signin} signout={signout} />
             )}
           />
-          <Route exact path="/signup" component={props => <SignUpForm {...props}  />}/>
+          <Route
+            exact
+            path="/signup"
+            component={props => <SignUpForm {...props} />}
+          />
           <Route
             path="/dashboard"
             component={props => <Dashboard {...props} username={username} />}
+          />
+          <Route
+            exact
+            path="/lawyers"
+            component={props => (
+              <LawyerList
+                {...props}
+                lawyers={lawyers}
+                selectedLawyer={this.selectedLawyer}
+                addToMyDashboard={this.addToMyDashboard}
+              />
+            )}
           />
           <Route component={() => <h1>Page not found.</h1>} />
         </Switch>
