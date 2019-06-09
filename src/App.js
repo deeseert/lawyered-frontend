@@ -3,10 +3,10 @@ import { Route, Switch, withRouter } from "react-router-dom";
 //withRouter is Higher Order Component used to provide App.js with props. Then you need to "export default withRouter(App)"
 
 import HomePage from "./pages/HomePage";
-import Header from "./pages/Header";
 import SignInForm from "./pages/SignInForm";
-// import Inventory from "./pages/Inventory";
+import SignUpForm from './pages/SignUpForm'
 import Dashboard from "./pages/Dashboard";
+import NavBar from "./components/NavBar";
 
 import API from "./API";
 
@@ -20,7 +20,7 @@ class App extends Component {
   signin = (username, token) => {
     this.setState({ username }, () => {
       localStorage.setItem("token", token);
-      this.props.history.push("/dashboard");
+      this.props.history.push("/");
     });
   };
 
@@ -30,6 +30,7 @@ class App extends Component {
     // And clear the localStorage too
     localStorage.removeItem("token");
     // localStorage.removeItem("jwt");
+    this.props.history.push("/signin");
   };
 
   // The validate stuff needs to happen when the page loads, so when the component mounts:
@@ -44,41 +45,23 @@ class App extends Component {
     });
   }
 
-  // signin = (username, token) => {
-  //   localStorage.setItem("token", token);
-  //   this.setState({ username }, () => {
-  //     this.props.history.push("/inventory");
-  //   });
-  // };
-
-  // signout = () => {
-  //   this.setState({ username: "" });
-  //   localStorage.removeItem("token");
-  // };
-
-  // componentDidMount() {
-  //   API.validate().then(data => {
-  //     if (data.error) {
-  //       this.props.history.push("/signin");
-  //     } else {
-  //       this.signin(data.username, localStorage.getItem("token"));
-  //     }
-  //   });
-  // }
-
   render() {
     const { signin, signout } = this;
     const { username } = this.state;
 
     return (
       <div className="App">
-        <Header username={username} signout={signout} />
+        <NavBar username={username} signout={signout} />
+        {/* <Header username={username} signout={signout} /> */}
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route
             path="/signin"
-            component={props => <SignInForm {...props} signin={signin} />}
+            component={props => (
+              <SignInForm {...props} signin={signin} signout={signout} />
+            )}
           />
+          <Route exact path="/signup" component={props => <SignUpForm {...props}  />}/>
           <Route
             path="/dashboard"
             component={props => <Dashboard {...props} username={username} />}
