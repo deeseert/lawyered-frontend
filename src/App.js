@@ -8,6 +8,7 @@ import SignUpForm from "./pages/SignUpForm";
 import Dashboard from "./pages/Dashboard";
 import NavBar from "./components/NavBar";
 import LawyerList from "./components/LawyerList";
+import LawyerDetails from "./components/LawyerDetails";
 
 import API from "./API";
 
@@ -37,7 +38,9 @@ class App extends Component {
   };
 
   selectLawyer = lawyer => {
+    console.log("lawyer selected");
     this.setState({ selectedLawyer: lawyer });
+    this.props.history.push(`/lawyers/${lawyer.id}`);
   };
 
   deselectLawyer = () => {
@@ -109,9 +112,7 @@ class App extends Component {
           />
           <Route
             path="/dashboard"
-            component={props => (
-              <Dashboard {...props} username={username} />
-            )}
+            component={props => <Dashboard {...props} username={username} />}
           />
           <Route
             exact
@@ -120,9 +121,19 @@ class App extends Component {
               <LawyerList
                 {...props}
                 lawyers={lawyers}
-                selectedLawyer={this.selectedLawyer}
+                selectLawyer={this.selectLawyer}
                 addToMyDashboard={this.addToMyDashboard}
                 cardValue={this.state.cardValue}
+              />
+            )}
+          />
+          <Route
+            exact
+            path={`/lawyers/:id`}
+            component={props => (
+              <LawyerDetails
+                {...props}
+                selectedLawyer={this.state.selectedLawyer}
               />
             )}
           />
