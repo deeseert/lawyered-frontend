@@ -17,8 +17,19 @@ class App extends Component {
   state = {
     username: "",
     searchValue: "",
+    cardValue: "",
     lawyers: [],
     selectedLawyer: null
+  };
+
+  handleSearch = event => {
+    this.setState({ searchValue: event.target.value });
+  };
+
+  handleSubmit = () => {
+    this.setState({ cardValue: this.state.searchValue });
+    this.setState({ searchValue: "" });
+    this.props.history.push("/lawyers");
   };
 
   addToMyDashboard = lawyer => {
@@ -73,7 +84,18 @@ class App extends Component {
         <NavBar username={username} signout={signout} />
         {/* <Header username={username} signout={signout} /> */}
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route
+            exact
+            path="/"
+            component={props => (
+              <HomePage
+                {...props}
+                test={this.state.searchValue}
+                handleSearch={this.handleSearch}
+                handleSubmit={this.handleSubmit}
+              />
+            )}
+          />
           <Route
             path="/signin"
             component={props => (
@@ -87,7 +109,9 @@ class App extends Component {
           />
           <Route
             path="/dashboard"
-            component={props => <Dashboard {...props} username={username} />}
+            component={props => (
+              <Dashboard {...props} username={username} />
+            )}
           />
           <Route
             exact
@@ -98,6 +122,7 @@ class App extends Component {
                 lawyers={lawyers}
                 selectedLawyer={this.selectedLawyer}
                 addToMyDashboard={this.addToMyDashboard}
+                cardValue={this.state.cardValue}
               />
             )}
           />

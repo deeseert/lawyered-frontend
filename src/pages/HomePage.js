@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import Picture from "./Picture.js";
 import Categories from "../components/Categories";
-import Footer from '../components/Footer'
+import Footer from "../components/Footer";
 // import HowWorks from "./HowWorks.js";
 
 import "../App.css";
