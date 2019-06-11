@@ -1,28 +1,34 @@
 import React, { Component } from "react";
+// import { Icon, Label, Menu, Table } from "semantic-ui-react";
 
 class LawyerDetails extends Component {
-  // componentDidMount() {
-  //   fetch(`http://localhost:3000/lawyers/${this.props.selectedLawyer.id}`).then(resp => resp.json())
-  //   }
+  state = {
+    lawyerAvailabilities: []
+  };
+
+  displayAvailability = () => {
+    this.state.lawyerAvailabilities.map()
+  }
+
+  componentDidMount() {
+    fetch(`http://localhost:3000/lawyers/${this.props.myLawyer.id}/availabilities`)
+      .then(resp => resp.json())
+      .then(data => this.setState({ lawyerAvailabilities: data }));
+  }
 
   render() {
-    // debugger;
+    console.log(this.state.lawyerAvailabilities);
     return (
       <div>
+        {/* <div> {this.state.lawyerAvailabilities.map(av => <h1>I'm the availability<h1/>)}</div> */}
         <h1>OK NOW IT'S WORKING!</h1>
         <div className="ui cards">
           <div className="card">
             <div className="image">
-              <img
-                className="myImg"
-                src={this.props.myLawyer.image}
-                alt=""
-              />
+              <img className="myImg" src={this.props.myLawyer.image} alt="" />
             </div>
             <div className="content">
-              <div className="header">
-                {this.props.myLawyer.full_name}
-              </div>
+              <div className="header">{this.props.myLawyer.full_name}</div>
               <h1>Description</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -32,7 +38,13 @@ class LawyerDetails extends Component {
                 doloribus!
               </p>
               <button>Contact Me</button>
-              <button>Book appointment</button>
+              <button
+                onClick={() =>
+                  this.props.seeAvailabilitiesLawyer(this.props.myLawyer.id)
+                }
+              >
+                View Availabilities
+              </button>
             </div>
           </div>
         </div>

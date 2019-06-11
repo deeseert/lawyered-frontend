@@ -20,6 +20,7 @@ class App extends Component {
     searchValue: "",
     cardValue: "",
     lawyers: [],
+    appointments: [],
     selectedLawyer: null
   };
 
@@ -33,8 +34,12 @@ class App extends Component {
     this.props.history.push("/lawyers");
   };
 
-  addToMyDashboard = lawyer => {
-    console.log("Add Lawyer to your dashboard successfully clicked!");
+  seeAvailabilitiesLawyer = id => {
+    this.props.history.push(`/lawyers/${id}/availabilities`);
+    // post request
+    // link to dashboard
+    // in the dashboard simply fetch the whole thing without changing anything
+    console.log("Here are the availabilities for lawyer id:", id);
   };
 
   selectLawyer = lawyer => {
@@ -146,6 +151,7 @@ class App extends Component {
                 <LawyerDetails
                   {...props}
                   myLawyer={myLawyer}
+                  seeAvailabilitiesLawyer={this.seeAvailabilitiesLawyer}
                   // selectedLawyer={this.state.selectedLawyer}
                 />
               );
