@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import "../App.css";
 
-import LawyerDetails from "./LawyerDetails";
+import Lawyer from "./Lawyer";
 
 class FilteredLawyers extends Component {
   state = {};
@@ -10,7 +10,7 @@ class FilteredLawyers extends Component {
     return (
       <div>
         {this.props.filteredLawyers.map(lawyer => (
-          <LawyerDetails
+          <Lawyer
             key={lawyer.id}
             lawyer={lawyer}
             selectLawyer={this.props.selectLawyer}

@@ -38,7 +38,7 @@ class App extends Component {
   };
 
   selectLawyer = lawyer => {
-    console.log("lawyer selected");
+    console.log("selectedLawyer:", lawyer);
     this.setState({ selectedLawyer: lawyer });
     this.props.history.push(`/lawyers/${lawyer.id}`);
   };
@@ -128,16 +128,30 @@ class App extends Component {
             )}
           />
           <Route
-            exact
-            path={`/lawyers/:id`}
-            component={props => (
-              <LawyerDetails
-                {...props}
-                selectedLawyer={this.state.selectedLawyer}
-              />
-            )}
+            path="/lawyers/:id"
+            component={props => {
+              const id = props.match.params.id;
+              const myLawyer =
+                this.state.lawyers.find(
+                  //type casting
+                  lawyer => Number(lawyer.id) === Number(id)
+                ) || this.state.selectedLawyer;
+
+              if (this.state.lawyers.length === 0) return <h1>Loading...</h1>;
+
+              if (this.state.lawyers.length > 0 && myLawyer === undefined)
+                return <h1>Lawyer not found bro!</h1>;
+
+              return (
+                <LawyerDetails
+                  {...props}
+                  myLawyer={myLawyer}
+                  // selectedLawyer={this.state.selectedLawyer}
+                />
+              );
+            }}
           />
-          <Route component={() => <h1>Page not found.</h1>} />
+          <Route component={() => <h1>404 - Page not found.</h1>} />
         </Switch>
       </div>
     );

@@ -34,7 +34,7 @@ const NavBar = props => {
         )}
         {props.username ? (
           <li>
-            <Link style={{ textDecoration: "none" }} to="/cart">
+            <Link style={{ textDecoration: "none" }} to="/dashboard">
               <span onClick={props.studentCall}>My Appointments</span>
             </Link>
           </li>

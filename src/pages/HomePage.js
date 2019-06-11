@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import Picture from "./Picture.js";
 import Categories from "../components/Categories";
