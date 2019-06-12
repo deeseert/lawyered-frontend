@@ -19,9 +19,11 @@ class LawyerDetails extends Component {
     console.log(this.state.lawyerAvailabilities);
     return (
       <div>
-        {/* <div> {this.state.lawyerAvailabilities.map(av => <h1>I'm the availability<h1/>)}</div> */}
-        <h1>OK NOW IT'S WORKING!</h1>
-        <Availability lawyerAvailabilities={this.state.lawyerAvailabilities} />
+        <Availability
+          lawyerAvailabilities={this.state.lawyerAvailabilities}
+          clientId={this.props.clientId}
+          // myLawyer={this.props.myLawyer}
+        />
         <div className="ui cards">
           <div className="card">
             <div className="image">

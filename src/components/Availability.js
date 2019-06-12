@@ -1,50 +1,3 @@
-// import React, { Component } from "react";
-// import { Icon, Label, Menu, Table } from "semantic-ui-react";
-
-// class Availability extends Component {
-//   // state = {}
-//   render() {
-//     return (
-//       <>
-//       <Table celled>
-//         <Table.Header>
-//           <Table.Row>
-//             <Table.HeaderCell>Header</Table.HeaderCell>
-//             <Table.HeaderCell>Header</Table.HeaderCell>
-//             <Table.HeaderCell>Header</Table.HeaderCell>
-//           </Table.Row>
-//         </Table.Header>
-
-//         <Table.Body>
-//           {this.props.lawyerAvailabilities.map(av =>{
-//             return (
-//             <Table.Row>
-//               <Table.Cell>
-//                 <Label ribbon>First</Label>
-//               </Table.Cell>
-//               <Table.Cell>Cell</Table.Cell>
-//               <Table.Cell>Cell</Table.Cell>
-//             </Table.Row>
-//             <Table.Row>
-//               <Table.Cell>Cell</Table.Cell>
-//               <Table.Cell>Cell</Table.Cell>
-//               <Table.Cell>Cell</Table.Cell>
-//             </Table.Row>
-//             <Table.Row>
-//               <Table.Cell>Cell</Table.Cell>
-//               <Table.Cell>Cell</Table.Cell>
-//               <Table.Cell>Cell</Table.Cell>
-//             </Table.Row>
-//           )
-//         })}
-//         </Table.Body>
-//       </Table>
-//     );
-//   }
-// }
-
-// export default Availability;
-
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -57,12 +10,13 @@ import Paper from "@material-ui/core/Paper";
 
 class SimpleTable extends React.Component {
   state = {
-    teacher_id: "",
+    lawyer_id: "",
     row_id: ""
   };
 
-  postLesson = row => {
-    return fetch("https://salty-hamlet-89842.herokuapp.com/api/v1/lessons", {
+  postAppointment = row => {
+    // debugger;
+    return fetch("http://localhost:3000/appointments", {
       method: "POST",
       headers: {
         "Content-type": "application/json"
@@ -70,13 +24,13 @@ class SimpleTable extends React.Component {
       body: JSON.stringify({
         date: row.day,
         time: row.time,
-        lawyer_id: row.teacher_id,
-        client_id: this.props.studentIds,
+        lawyer_id: row.lawyer_id,
+        client_id: this.props.clientId
         // availability_id: row.id
       })
-    })
-      .then(resp => resp.json())
-      .then(this.props.callers);
+    }).then(resp => resp.json())
+    //   .then(this.props.callers);
+    // this.props.history.push("/dashboard");
   };
 
   // formattedDate = row => {
@@ -121,7 +75,7 @@ class SimpleTable extends React.Component {
                     {row.booked ? (
                       ""
                     ) : (
-                      <button onClick={() => this.postLesson(row)}>
+                      <button onClick={() => this.postAppointment(row)}>
                         Book a lesson
                       </button>
                     )}

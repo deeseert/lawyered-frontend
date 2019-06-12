@@ -102,7 +102,6 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar username={username} signout={signout} />
-        {/* <Header username={username} signout={signout} /> */}
         <Switch>
           <Route
             exact
@@ -163,7 +162,10 @@ class App extends Component {
                 <LawyerDetails
                   {...props}
                   myLawyer={myLawyer}
-                  seeAvailabilitiesLawyer={this.seeAvailabilitiesLawyer}
+                  seeAvailabilitiesLawyer={
+                    this.seeAvailabilitiesLawyer
+                  }
+                  clientId={this.state.clientId}
                   // selectedLawyer={this.state.selectedLawyer}
                 />
               );
