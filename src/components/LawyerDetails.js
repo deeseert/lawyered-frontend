@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 // import { Icon, Label, Menu, Table } from "semantic-ui-react";
+import Availability from "./Availability";
 
 class LawyerDetails extends Component {
   state = {
     lawyerAvailabilities: []
   };
 
-  displayAvailability = () => {
-    this.state.lawyerAvailabilities.map()
-  }
-
   componentDidMount() {
-    fetch(`http://localhost:3000/lawyers/${this.props.myLawyer.id}/availabilities`)
+    fetch(
+      `http://localhost:3000/lawyers/${this.props.myLawyer.id}/availabilities`
+    )
       .then(resp => resp.json())
       .then(data => this.setState({ lawyerAvailabilities: data }));
   }
@@ -22,6 +21,7 @@ class LawyerDetails extends Component {
       <div>
         {/* <div> {this.state.lawyerAvailabilities.map(av => <h1>I'm the availability<h1/>)}</div> */}
         <h1>OK NOW IT'S WORKING!</h1>
+        <Availability lawyerAvailabilities={this.state.lawyerAvailabilities} />
         <div className="ui cards">
           <div className="card">
             <div className="image">

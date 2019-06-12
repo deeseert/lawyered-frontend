@@ -17,6 +17,7 @@ import "./App.css";
 class App extends Component {
   state = {
     username: "",
+    clientId: "",
     searchValue: "",
     cardValue: "",
     lawyers: [],
@@ -52,12 +53,21 @@ class App extends Component {
     this.setState({ selectedLawyer: null });
   };
 
+  // My version
   signin = (username, token) => {
     this.setState({ username }, () => {
       localStorage.setItem("token", token);
       this.props.history.push("/");
     });
   };
+
+  // signin = client => {
+  //   debugger;
+  //   this.setState({ username: client.username, userId: client.userId }, () => {
+  //     localStorage.setItem("token", client.token);
+  //     this.props.history.push("/");
+  //   });
+  // };
 
   signout = () => {
     // When you sign out, clear the username from state
@@ -76,10 +86,12 @@ class App extends Component {
         this.props.history.push("/signin");
       } else {
         this.signin(data.username, localStorage.getItem("token"));
+        this.setState({ clientId: data.clientId });
         fetch("http://localhost:3000/lawyers")
           .then(resp => resp.json())
           .then(lawyers => this.setState({ lawyers }));
       }
+      console.log("coming from component did mount in App.js:", data);
     });
   }
 

@@ -5,6 +5,7 @@ class API {
   static dashboardUrl = API.baseUrl + "/dashboard";
   static lawyersUrl = API.baseUrl + "/lawyers";
 
+  // My Version
   static signin(user) {
     // debugger;
     console.log("this is the user:", user);
@@ -13,7 +14,16 @@ class API {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user)
     }).then(resp => resp.json());
+    // .then(data => data.clientId)
   }
+
+  // static signin(user) {
+  //   return fetch(this.signInUrl, {
+  //     method: "POST",
+  //     headers: { "Content-type": "application/json" },
+  //     body: JSON.stringify(user)
+  //   }).then(resp => resp.json());
+  // }
 
   static validate() {
     const token = localStorage.getItem("token");
