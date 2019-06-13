@@ -21,9 +21,11 @@ class LawyerList extends Component {
   // };
   render() {
     const mySearch = this.props.cardValue.toLowerCase();
-    const filteredLawyers = this.state.myLawyers.filter(lawyer =>
-      lawyer.full_name.toLowerCase().includes(mySearch)
-    );
+    const filteredLawyers = this.props.lawyers.filter(lawyer => {
+      if (lawyer.field) {
+        return lawyer.field.toLowerCase().includes(mySearch);
+      }
+    });
     console.log(filteredLawyers);
     if (filteredLawyers.length === 0) {
       return <h1>No match found </h1>;

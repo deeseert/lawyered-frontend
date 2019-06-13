@@ -14,6 +14,7 @@ const Picture = props => {
         <input
           autoFocus={true}
           id="form"
+          name="searchValue"
           onChange={props.handleSearch}
           type="text"
           placeholder="Intellectual Property..."
