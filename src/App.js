@@ -26,7 +26,7 @@ class App extends Component {
   };
 
   handleSearch = event => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
     this.setState({ [name]: value });
   };
 
@@ -163,9 +163,7 @@ class App extends Component {
                 <LawyerDetails
                   {...props}
                   myLawyer={myLawyer}
-                  seeAvailabilitiesLawyer={
-                    this.seeAvailabilitiesLawyer
-                  }
+                  seeAvailabilitiesLawyer={this.seeAvailabilitiesLawyer}
                   clientId={this.state.clientId}
                   // selectedLawyer={this.state.selectedLawyer}
                 />

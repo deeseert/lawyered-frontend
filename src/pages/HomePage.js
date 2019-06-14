@@ -17,6 +17,22 @@ const HomePage = props => {
         handleSubmit={props.handleSubmit}
         handleSearch={props.handleSearch}
       />
+
+      <div class="input-field col s12 teal lighten-2">
+        <select name="searchValue" onChange={props.handleSearch}>
+          <option value="" disabled selected>
+            Choose your option
+          </option>
+          <option value="Commercial Law">Commercial Law</option>
+          <option value="Criminal Law">Criminal Law</option>
+          <option value="Property Law">Property Law</option>
+        </select>
+        <label>Please, select the field here:</label>
+      </div>
+      <button onClick={props.handleSubmit} id="submit">
+        Search{" "}
+      </button>
+
       <Categories handleCardValue={props.handleCardValue} />
       {/* <HowWorks /> */}
       <Footer />
