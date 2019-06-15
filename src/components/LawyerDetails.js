@@ -16,7 +16,7 @@ class LawyerDetails extends Component {
   }
 
   render() {
-    console.log(this.state.lawyerAvailabilities);
+    console.log("this is availab:", this.state.lawyerAvailabilities);
     return (
       <div>
         <Availability

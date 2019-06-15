@@ -28,7 +28,7 @@ class SimpleTable extends React.Component {
         client_id: this.props.clientId
         // availability_id: row.id
       })
-    }).then(resp => resp.json())
+    }).then(resp => resp.json());
     //   .then(this.props.callers);
     // this.props.history.push("/dashboard");
   };
@@ -61,6 +61,7 @@ class SimpleTable extends React.Component {
           </TableHead>
           <TableBody>
             {this.props.lawyerAvailabilities.map(row => {
+              console.log("availability of lawyer:", row);
               return (
                 <TableRow key={row.id}>
                   <CustomTableCell component="th" scope="row">

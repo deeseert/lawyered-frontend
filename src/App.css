@@ -91,7 +91,8 @@
   background-image: url("pictures/art-law.png");
   z-index: 1;
   cursor: pointer;
-  border-style: solid;
+  /* border-style: solid; */
+  margin: 5px;
 }
 #Ob:hover {
   -webkit-filter: grayscale(100%);
@@ -133,31 +134,36 @@
   background-image: url("pictures/startup-law.png");
   z-index: 1;
   cursor: pointer;
-  border-style: solid;
+  /* border-style: solid; */
+  margin: 5px;
 }
 #Vi {
   background-image: url("pictures/ip.png");
   z-index: 1;
   cursor: pointer;
-  border-style: solid;
+  /* border-style: solid; */
+  margin: 5px;
 }
 #Gui {
   background-image: url("pictures/competition-law.png");
   z-index: 1;
   cursor: pointer;
-  border-style: solid;
+  /* border-style: solid; */
+  margin: 5px;
 }
 #Pi {
   background-image: url("pictures/fintech.png");
   z-index: 1;
   cursor: pointer;
-  border-style: solid;
+  /* border-style: solid; */
+  margin: 5px;
 }
 #Dru {
   background-image: url("pictures/legal-tech.png");
   z-index: 1;
   cursor: pointer;
-  border-style: solid;
+  /* border-style: solid; */
+  margin: 5px;
 }
 #test {
   background-color: rgba(153, 217, 238, 0.493);
@@ -207,7 +213,7 @@
   height: 100%;
   width: 100%;
   float: right;
-  border: 7px solid rgb(73, 166, 226);
+  /* border: 7px solid rgb(73, 166, 226); */
   margin-left: 20px;
   margin-top: 16px;
 }
@@ -216,7 +222,7 @@
     height: 750px;
     width: 800px;
     float: left;
-    border: 7px solid rgb(73, 166, 226);
+    /* border: 7px solid rgb(73, 166, 226); */
     margin-left: 20px;
     margin-top: 16px;
   }
@@ -231,7 +237,7 @@
     height: 450px;
     width: 450px;
     float: left;
-    border: 7px solid rgb(73, 166, 226);
+    /* border: 7px solid rgb(73, 166, 226); */
   }
   .teachersAndMap {
     width: 1000px;
@@ -251,7 +257,7 @@
     height: 450px;
     width: 350px;
     float: left;
-    border: 7px solid rgb(73, 166, 226);
+    /* border: 7px solid rgb(34, 36, 38); */
   }
   .wrapper {
     overflow: scroll;

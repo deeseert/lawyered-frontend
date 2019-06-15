@@ -7,7 +7,6 @@ import Lawyer from "./Lawyer";
 class FilteredLawyers extends Component {
   state = {
     filteredLawyersArray: []
-    // sort: ''
   };
 
   render() {

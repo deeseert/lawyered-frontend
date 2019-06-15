@@ -78,9 +78,6 @@ class LawyerList extends Component {
       return (
         <div>
           <div>
-            <MapContainer />
-          </div>
-          <div>
             <div>
               <Filter updateSort={this.updateSort} />
             </div>
@@ -90,6 +87,9 @@ class LawyerList extends Component {
                 lawyers={filteredAndSortedLawyers}
               />
             </div>
+          </div>
+          <div className="map">
+            <MapContainer lawyers={filteredAndSortedLawyers} />
           </div>
         </div>
       );
