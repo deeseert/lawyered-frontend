@@ -22,7 +22,7 @@ class LawyerDetails extends Component {
         <Availability
           lawyerAvailabilities={this.state.lawyerAvailabilities}
           clientId={this.props.clientId}
-          // myLawyer={this.props.myLawyer}
+          myLawyer={this.props.myLawyer}
         />
         <div className="ui cards">
           <div className="card">

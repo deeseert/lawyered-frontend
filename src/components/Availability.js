@@ -11,8 +11,26 @@ import Paper from "@material-ui/core/Paper";
 class SimpleTable extends React.Component {
   state = {
     lawyer_id: "",
-    row_id: ""
+    row_id: 0
   };
+
+  
+
+  // updateBookedStatus = () => {
+  //   const { booked } = this.state;
+  //   // const booked = this.state.booked;
+  //   this.setState({ booked: !booked });
+  // };
+
+  updateBookedStatusAndPostAppOnServer = (lawyer, row) => {
+    this.setState({ row_id: row.id});
+    fetch(`http://localhost:3000/lawyers/${lawyer.id}/availabilities/${row.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: `${row.id}` })
+    }).then(resp => resp.json())
+    this.postAppointment(row)
+  }
 
   postAppointment = row => {
     // debugger;
@@ -47,7 +65,7 @@ class SimpleTable extends React.Component {
   // };
 
   render() {
-    const { classes } = this.props;
+    const { classes, myLawyer } = this.props;
     return (
       <Paper className={classes.root}>
         <Table className={classes.table}>
@@ -70,14 +88,20 @@ class SimpleTable extends React.Component {
                   <CustomTableCell align="right">
                     {row.duration} minutes
                   </CustomTableCell>
-                  <CustomTableCell align="right">{row.day}</CustomTableCell>
+                  <CustomTableCell align="right">
+                    {row.day}
+                  </CustomTableCell>
                   <CustomTableCell align="right">
                     {row.booked ? "Unavailable" : "Available"}{" "}
                     {row.booked ? (
                       ""
                     ) : (
-                      <button onClick={() => this.postAppointment(row)}>
-                        Book a lesson
+                      <button
+                        onClick={() =>
+                          this.updateBookedStatusAndPostAppOnServer(myLawyer, row)
+                        }
+                      >
+                        Book Appointment
                       </button>
                     )}
                   </CustomTableCell>
