@@ -10,6 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 import API from "../API";
+import Availability from "../components/Availability";
 
 import MyAppointment from "../components/MyAppointment";
 
@@ -32,6 +33,7 @@ class Dashboard extends Component {
     );
     this.setState({ appointments: newAppointments });
     this.destroyer(appointment.id);
+    // Availability.makeAppAvAgain();
   };
 
   destroyer = id => {

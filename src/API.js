@@ -52,6 +52,19 @@ class API {
   static getLawyers() {
     return this.get(this.lawyersUrl);
   }
+
+  // static makeAppAvAgain(client, availability) {
+  //   return fetch(
+  //     `http://localhost:3000/clients/${
+  //       client.id
+  //     }/appointments/4{availability.id}`,
+  //     {
+  //       method: "PATCH",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ id: `${availability.id}` })
+  //     }
+  //   ).then(resp => resp.json());
+  // }
 }
 
 export default API;

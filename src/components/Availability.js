@@ -1,4 +1,7 @@
 import React from "react";
+
+import API from "../API";
+
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
@@ -14,7 +17,17 @@ class SimpleTable extends React.Component {
     row_id: 0
   };
 
-  
+  // This function works but don't know how to call it when clicking 'Delete Appointment in the Dashboard'
+  static makeAppAvAgain() {
+    return fetch(
+      "http://localhost:3000/clients/this.props.clientId/appointments/this.state.row_id",
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: this.state.row_id })
+      }
+    ).then(resp => resp.json());
+  }
 
   // updateBookedStatus = () => {
   //   const { booked } = this.state;
@@ -23,14 +36,17 @@ class SimpleTable extends React.Component {
   // };
 
   updateBookedStatusAndPostAppOnServer = (lawyer, row) => {
-    this.setState({ row_id: row.id});
-    fetch(`http://localhost:3000/lawyers/${lawyer.id}/availabilities/${row.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: `${row.id}` })
-    }).then(resp => resp.json())
-    this.postAppointment(row)
-  }
+    this.setState({ row_id: row.id });
+    fetch(
+      `http://localhost:3000/lawyers/${lawyer.id}/availabilities/${row.id}`,
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: `${row.id}` })
+      }
+    ).then(resp => resp.json());
+    this.postAppointment(row);
+  };
 
   postAppointment = row => {
     // debugger;
@@ -88,9 +104,7 @@ class SimpleTable extends React.Component {
                   <CustomTableCell align="right">
                     {row.duration} minutes
                   </CustomTableCell>
-                  <CustomTableCell align="right">
-                    {row.day}
-                  </CustomTableCell>
+                  <CustomTableCell align="right">{row.day}</CustomTableCell>
                   <CustomTableCell align="right">
                     {row.booked ? "Unavailable" : "Available"}{" "}
                     {row.booked ? (
@@ -98,7 +112,10 @@ class SimpleTable extends React.Component {
                     ) : (
                       <button
                         onClick={() =>
-                          this.updateBookedStatusAndPostAppOnServer(myLawyer, row)
+                          this.updateBookedStatusAndPostAppOnServer(
+                            myLawyer,
+                            row
+                          )
                         }
                       >
                         Book Appointment
