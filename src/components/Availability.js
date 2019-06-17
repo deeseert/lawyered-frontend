@@ -35,32 +35,30 @@ class SimpleTable extends React.Component {
   //   this.setState({ booked: !booked });
   // };
 
-  updateBookedStatusAndPostAppOnServer = (lawyer, row) => {
-    this.setState({ row_id: row.id });
-    fetch(
-      `http://localhost:3000/lawyers/${lawyer.id}/availabilities/${row.id}`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: `${row.id}` })
-      }
-    ).then(resp => resp.json());
-    this.postAppointment(row);
-  };
+  // updateBookedStatusAndPostAppOnServer = (lawyer, row) => {
+  //   this.setState({ row_id: row.id });
+  //   fetch(
+  //     `http://localhost:3000/lawyers/${lawyer.id}/availabilities/${row.id}`,
+  //     {
+  //       method: "PATCH",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ id: `${row.id}` })
+  //     }
+  //   ).then(resp => resp.json());
+  //   // this.postAppointment(row);
+  // };
 
-  postAppointment = row => {
+  postAppointment = availabilityRow => {
     // debugger;
+    console.log("Appointment booked");
     return fetch("http://localhost:3000/appointments", {
       method: "POST",
       headers: {
         "Content-type": "application/json"
       },
       body: JSON.stringify({
-        date: row.day,
-        time: row.time,
-        lawyer_id: row.lawyer_id,
-        client_id: this.props.clientId
-        // availability_id: row.id
+        client_id: this.props.clientId,
+        availability_id: availabilityRow.id
       })
     }).then(resp => resp.json());
     //   .then(this.props.callers);
@@ -94,29 +92,26 @@ class SimpleTable extends React.Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.props.lawyerAvailabilities.map(row => {
-              console.log("availability of lawyer:", row);
+            {this.props.lawyerAvailabilities.map(availabilityRow => {
+              console.log("availability of lawyer:", availabilityRow);
               return (
-                <TableRow key={row.id}>
+                <TableRow key={availabilityRow.id}>
                   <CustomTableCell component="th" scope="row">
-                    {row.time}
+                    {availabilityRow.time}
                   </CustomTableCell>
                   <CustomTableCell align="right">
-                    {row.duration} minutes
+                    {availabilityRow.duration} minutes
                   </CustomTableCell>
-                  <CustomTableCell align="right">{row.day}</CustomTableCell>
                   <CustomTableCell align="right">
-                    {row.booked ? "Unavailable" : "Available"}{" "}
-                    {row.booked ? (
+                    {availabilityRow.day}
+                  </CustomTableCell>
+                  <CustomTableCell align="right">
+                    {availabilityRow.booked ? "Unavailable" : "Available"}{" "}
+                    {availabilityRow.booked ? (
                       ""
                     ) : (
                       <button
-                        onClick={() =>
-                          this.updateBookedStatusAndPostAppOnServer(
-                            myLawyer,
-                            row
-                          )
-                        }
+                        onClick={() => this.postAppointment(availabilityRow)}
                       >
                         Book Appointment
                       </button>
