@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Card } from "semantic-ui-react";
+import Rating from "react-rating";
+import StarRatings from "react-star-ratings";
 
 class Lawyer extends Component {
   state = {
-    front: true
+    front: true,
+    rating: 2.5
   };
 
   flipImageLawyer = () => {
@@ -14,7 +17,18 @@ class Lawyer extends Component {
     return this.state.front ? (
       <img src={lawyer.image} alt="" onMouseEnter={this.flipImageLawyer} />
     ) : (
-      <h1 onMouseLeave={this.flipImageLawyer}>This is the back</h1>
+      <React.Fragment>
+        <h1 onMouseLeave={this.flipImageLawyer}>This is the back</h1>
+        <StarRatings
+          rating={this.props.lawyer.rating}
+          starRatedColor="orange"
+          changeRating={this.changeRating}
+          numberOfStars={5}
+          name="rating"
+          starDimension="20px"
+          starSpacing="15px"
+        />
+      </React.Fragment>
     );
   };
 

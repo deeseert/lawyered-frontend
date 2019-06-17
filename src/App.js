@@ -10,6 +10,7 @@ import NavBar from "./components/NavBar";
 import LawyerList from "./components/LawyerList";
 import LawyerDetails from "./components/LawyerDetails";
 
+
 import API from "./API";
 
 import "./App.css";
@@ -130,9 +131,7 @@ class App extends Component {
           />
           <Route
             path="/dashboard"
-            component={props => (
-              <Dashboard {...props} username={username} />
-            )}
+            component={props => <Dashboard {...props} username={username} />}
           />
           <Route
             exact
@@ -158,8 +157,7 @@ class App extends Component {
                   lawyer => Number(lawyer.id) === Number(id)
                 ) || this.state.selectedLawyer;
 
-              if (this.state.lawyers.length === 0)
-                return <h1>Loading...</h1>;
+              if (this.state.lawyers.length === 0) return <h1>Loading...</h1>;
 
               if (this.state.lawyers.length > 0 && myLawyer === undefined)
                 return <h1>Lawyer not found bro!</h1>;
@@ -168,9 +166,7 @@ class App extends Component {
                 <LawyerDetails
                   {...props}
                   myLawyer={myLawyer}
-                  seeAvailabilitiesLawyer={
-                    this.seeAvailabilitiesLawyer
-                  }
+                  seeAvailabilitiesLawyer={this.seeAvailabilitiesLawyer}
                   clientId={this.state.clientId}
                   // selectedLawyer={this.state.selectedLawyer}
                   row_id={this.state.row_id}
