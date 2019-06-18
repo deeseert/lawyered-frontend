@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Grid, Image} from 'semantic-ui-react'
 
 // import LawyerDetails from "./LawyerDetails";
 import FilteredLawyers from "./FilteredLawyers";
@@ -69,12 +70,12 @@ class LawyerList extends Component {
       return <h1>No match found </h1>;
     } else
       return (
-        <div>
-          <div>
+        <div className="lawyersAndMap">
+          <div className="lawyers">
             <div>
               <Filter updateSort={this.updateSort} />
             </div>
-            <div>
+            <div className="wrapper">
               <FilteredLawyers
                 selectLawyer={this.props.selectLawyer}
                 lawyers={filteredAndSortedLawyers}

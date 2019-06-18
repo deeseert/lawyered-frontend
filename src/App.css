@@ -188,7 +188,7 @@
   font-family: "Lato", "Open Sans", sans-serif;
 }
 
-.teachersAndMap {
+.lawyersAndMap {
   background: rgba(37, 36, 36, 0.116);
   width: 1500px;
   height: 850px;
@@ -197,7 +197,7 @@
   padding-bottom: 110px; */
 }
 
-.teachers {
+.lawyers {
   /* background: rgba(37, 36, 36, 0.116); */
   float: left;
   height: 100%;
@@ -234,7 +234,7 @@
     float: left;
     /* border: 7px solid rgb(73, 166, 226); */
   }
-  .teachersAndMap {
+  .lawyersAndMap {
     width: 1000px;
     height: 500px;
   }
@@ -243,7 +243,7 @@
     min-height: 150px;
     max-height: 400px !important;
   }
-  .teachers {
+  .lawyers {
     width: 450px;
   }
 }
@@ -259,11 +259,11 @@
     min-height: 150px;
     max-height: 150px;
   }
-  .teachers {
+  .lawyers {
     width: 350px;
     height: 200px;
   }
-  .teachersAndMap {
+  .lawyersAndMap {
     width: 800px;
     height: 500px;
   }
