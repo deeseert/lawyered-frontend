@@ -61,13 +61,6 @@ class LawyerList extends Component {
     });
   };
 
-  // updateSearch = () => {
-  //   // const myNewLawyers = this.state.myLawyers;
-  //   const mySearch = this.props.cardValue.toLowerCase();
-  //   return this.state.myLawyers.filter(lawyer =>
-  //     lawyer.full_name.toLowerCase().includes(mySearch)
-  //   );
-  // };
   render() {
     const { sortLawyers, filterLawyers } = this;
     const { lawyers } = this.props;

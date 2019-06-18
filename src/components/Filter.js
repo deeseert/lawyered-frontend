@@ -1,36 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 
-// import M from "materialize-css";
+import { Select } from "semantic-ui-react";
 
-class Filter extends Component {
-  // const { toggleGreased, updateSort } = this.props
+const selectOptions = [
+  { key: "nm", value: "Name", text: "Name" },
+  { key: "lc", value: "Location", text: "Location" },
+  { key: "rt", value: "Rating", text: "Rating" },
+  { key: "pr", value: "Price", text: "Price" }
+];
 
-  // componentDidMount() {
-  //   var elems = document.querySelectorAll("select");
-  //   return M.FormSelect.init(elems);
-  // }
-
-  render() {
-    return (
-      <div>
-        <div>
-          <select
-            name="searchValue"
-            onChange={event => this.props.updateSort(event.target.value)}
-          >
-            <option value="" disabled selected>
-              Sort by:
-            </option>
-            <option value="Name">Name</option>
-            <option value="Location">Location</option>
-            <option value="Rating">Rating</option>
-            <option value="Price_hour">Price</option>
-          </select>
-          <label />
-        </div>
-      </div>
-    );
-  }
-}
+const Filter = props => {
+  // debugger;
+  return (
+    <Select
+      placeholder="Filter By:"
+      onChange={event => props.updateSort(event.target.innerText)}
+      options={selectOptions}
+    />
+  );
+};
 
 export default Filter;
