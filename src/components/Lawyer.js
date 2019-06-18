@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Card } from "semantic-ui-react";
-import Rating from "react-rating";
+
 import StarRatings from "react-star-ratings";
+
+import Flippy, { FrontSide, BackSide } from "react-flippy";
 
 class Lawyer extends Component {
   state = {
@@ -36,15 +38,47 @@ class Lawyer extends Component {
     const { lawyer, selectLawyer } = this.props;
     // debugger;
     return (
-      <Card>
-        <div className="image">{this.renderImageLawyer(lawyer)}</div>
-        <div className="content">
-          <div>{lawyer.full_name}</div>
-        </div>
-        <div>
-          <button onClick={() => selectLawyer(lawyer)}>View Details</button>
-        </div>
-      </Card>
+      <Flippy
+        flipOnHover={true} // default false
+        flipOnClick={false} // default false
+        flipDirection="horizontal" // horizontal or vertical
+        ref={r => (this.flippy = r)} // to use toggle method like this.flippy.toggle()
+        // if you pass isFlipped prop component will be controlled component.
+        // and other props, which will go to div
+        style={{ width: "350px", height: "350px" }} /// these are optional style, it is not necessary
+      >
+        <FrontSide
+          style={{
+            backgroundColor: "#FFFFFF",
+            margin: "5px"
+          }}
+        >
+          RICK
+          <div>
+            <div className="image">
+              <img style={{ width: "100%" }} src={lawyer.image} alt="" />
+            </div>
+            <div className="content">
+              <div>{lawyer.full_name}</div>
+            </div>
+          </div>
+        </FrontSide>
+        <BackSide style={{ backgroundColor: "#FFFFFF" }}>
+          ROCKS
+          <StarRatings
+            rating={this.props.lawyer.rating}
+            starRatedColor="orange"
+            changeRating={this.changeRating}
+            numberOfStars={5}
+            name="rating"
+            starDimension="20px"
+            starSpacing="15px"
+          />
+          <div>
+            <button onClick={() => selectLawyer(lawyer)}>View Details</button>
+          </div>
+        </BackSide>
+      </Flippy>
     );
   }
 }

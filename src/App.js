@@ -10,7 +10,6 @@ import NavBar from "./components/NavBar";
 import LawyerList from "./components/LawyerList";
 import LawyerDetails from "./components/LawyerDetails";
 
-
 import API from "./API";
 
 import "./App.css";
@@ -27,14 +26,16 @@ class App extends Component {
     row_id: 0
   };
 
-  handleSearch = event => {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+  handleSearch = (event, data) => {
+    this.setState({ searchValue: data.value });
   };
 
+  // Refactor this part
   handleSubmit = () => {
-    this.setState({ cardValue: this.state.searchValue });
-    this.setState({ searchValue: "" });
+    this.setState({
+      cardValue: this.state.searchValue,
+      searchValue: ""
+    });
     this.props.history.push("/lawyers");
   };
 
@@ -104,7 +105,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <NavBar username={username} signout={signout} />
+        <NavBar id="myNavBar" username={username} signout={signout} />
         <Switch>
           <Route
             exact
@@ -115,6 +116,7 @@ class App extends Component {
                 test={this.state.searchValue}
                 handleSearch={this.handleSearch}
                 handleSubmit={this.handleSubmit}
+                searchValue={this.state.searchValue}
               />
             )}
           />

@@ -1,13 +1,18 @@
 import React from "react";
 
-// import { Link } from "react-router-dom";
-
 import Picture from "./Picture.js";
 import Categories from "../components/Categories";
 import Footer from "../components/Footer";
-// import HowWorks from "./HowWorks.js";
 
 import "../App.css";
+
+import { Select } from "semantic-ui-react";
+
+const selectOptions = [
+  { key: "comm_l", value: "Commercial Law", text: "Commercial Law" },
+  { key: "crim_l", value: "Criminal Law", text: "Criminal Law" },
+  { key: "prop_l", value: "Property Law", text: "Property Law" }
+];
 
 const HomePage = props => {
   return (
@@ -17,24 +22,19 @@ const HomePage = props => {
         handleSubmit={props.handleSubmit}
         handleSearch={props.handleSearch}
       />
+      <h3 id="titleHomePage">Select The Legal Mater Below</h3>
+      <Select
+        value={props.searchValue}
+        onChange={props.handleSearch}
+        placeholder="Choose your option"
+        options={selectOptions}
+      />
 
-      <div class="input-field col s12 teal lighten-2">
-        <select name="searchValue" onChange={props.handleSearch}>
-          <option value="" disabled selected>
-            Choose your option
-          </option>
-          <option value="Commercial Law">Commercial Law</option>
-          <option value="Criminal Law">Criminal Law</option>
-          <option value="Property Law">Property Law</option>
-        </select>
-        <label>Please, select the field here:</label>
-      </div>
       <button onClick={props.handleSubmit} id="submit">
         Search{" "}
       </button>
 
       <Categories handleCardValue={props.handleCardValue} />
-      {/* <HowWorks /> */}
       <Footer />
     </div>
   );

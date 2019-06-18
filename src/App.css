@@ -54,11 +54,6 @@
   cursor: pointer;
 }
 
-#mainPicture {
-  height: 100%;
-  width: 100%;
-}
-
 #picText {
   color: white;
   position: float;
@@ -420,8 +415,12 @@
   display: inline-flex;
   justify-content: space-between;
   align-content: center;
+  color: orange;
+  border-bottom: 1px solid black;
+}
 
-  border-bottom: 1px solid #ccc;
+#myNvBar {
+  color: orange;
 }
 
 @media (min-width: 550px) {
@@ -524,14 +523,14 @@
   bottom: 10px;
   overflow: auto;
 }
-.formCss {
+/* .formCss {
   position: absolute;
   top: 40%;
   left: 0;
   right: 60%;
   bottom: 10px;
   overflow: auto;
-}
+} */
 
 .availability {
   border: solid;
@@ -613,3 +612,29 @@
   }
 }
 
+.carousel__slider {
+  max-height: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 50%; */
+}
+
+/* .carousel {
+  text-align: top;
+} */
+
+#mainPicture {
+  height: 45%;
+  width: 100%;
+  margin-top: 1%;
+}
+
+.mainPicture2 {
+  height: 50%;
+  width: 100%;
+}
+
+#titleHomePage {
+  margin-bottom: -1%;
+}
