@@ -49,7 +49,6 @@ class SimpleTable extends React.Component {
   // };
 
   postAppointment = availabilityRow => {
-    // debugger;
     console.log("Appointment booked");
     return fetch("http://localhost:3000/appointments", {
       method: "POST",
@@ -65,24 +64,19 @@ class SimpleTable extends React.Component {
     // this.props.history.push("/dashboard");
   };
 
-  // formattedDate = row => {
-  //   let d = new Date(row.date);
-
-  //   let month = String(d.getMonth() + 1);
-  //   let day = String(d.getDate());
-  //   const year = String(d.getFullYear());
-
-  //   if (month.length < 2) month = "0" + month;
-  //   if (day.length < 2) day = "0" + day;
-
-  //   return `${day}/${month}/${year}`;
-  // };
-
   render() {
     const { classes, myLawyer } = this.props;
     return (
-      <Paper className={classes.root}>
-        <Table className={classes.table}>
+      <Paper
+        id="mammeta"
+        className={classes.root}
+        onClick={this.props.showAvailabilities}
+      >
+        <Table
+          id="soreta"
+          className={classes.table}
+          onClick={e => e.stopPropagation()}
+        >
           <TableHead>
             <TableRow>
               <CustomTableCell>Time</CustomTableCell>

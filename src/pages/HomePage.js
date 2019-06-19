@@ -16,7 +16,7 @@ const selectOptions = [
 
 const HomePage = props => {
   return (
-    <div className="App">
+    <div>
       <Picture
         test={props.test}
         handleSubmit={props.handleSubmit}

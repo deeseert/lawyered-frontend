@@ -69,19 +69,16 @@ class LawyerList extends Component {
       return <h1>No match found </h1>;
     } else
       return (
-        <div className="lawyersAndMap">
-          <div className="lawyers">
-            <div>
-              <Filter updateSort={this.updateSort} />
-            </div>
-            <div className="wrapper">
-              <FilteredLawyers
-                selectLawyer={this.props.selectLawyer}
-                lawyers={filteredAndSortedLawyers}
-              />
-            </div>
+        <div className="lawyers_container">
+          <div className="lawyers_list">
+            <Filter updateSort={this.updateSort} />
+            <FilteredLawyers
+              selectLawyer={this.props.selectLawyer}
+              lawyers={filteredAndSortedLawyers}
+            />
           </div>
-          <div className="map">
+
+          <div className="lawyers_maps">
             <MapContainer lawyers={filteredAndSortedLawyers} />
           </div>
         </div>

@@ -11,7 +11,7 @@ class FilteredLawyers extends Component {
 
   render() {
     return (
-      <div>
+      <div className="lawyers_list__cards">
         {this.props.lawyers.map(lawyer => (
           <Lawyer
             key={lawyer.id}

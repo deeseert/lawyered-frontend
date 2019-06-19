@@ -4,6 +4,7 @@ import Availability from "./Availability";
 
 class LawyerDetails extends Component {
   state = {
+    hidden: true,
     lawyerAvailabilities: []
   };
 
@@ -15,45 +16,39 @@ class LawyerDetails extends Component {
       .then(data => this.setState({ lawyerAvailabilities: data }));
   }
 
+  showAvailabilities = () => {
+    this.setState({ hidden: !this.state.hidden });
+  };
+  renderAvailabilities = () => {
+    return this.state.hidden ? null : (
+      <Availability
+        showAvailabilities={this.showAvailabilities}
+        lawyerAvailabilities={this.state.lawyerAvailabilities}
+        clientId={this.props.clientId}
+        myLawyer={this.props.myLawyer}
+        row_id={this.props.row_id}
+      />
+    );
+  };
+
   render() {
     console.log("this is availab:", this.state.lawyerAvailabilities);
     return (
       <div>
-        <Availability
-          lawyerAvailabilities={this.state.lawyerAvailabilities}
-          clientId={this.props.clientId}
-          myLawyer={this.props.myLawyer}
-          row_id={this.props.row_id}
-        />
-        <div className="ui cards">
-          <div className="card">
-            <div className="image">
-              <img className="myImg" src={this.props.myLawyer.image} alt="" />
-            </div>
-            <div className="content">
-              <div className="header">{this.props.myLawyer.full_name}</div>
-              <h1>Description</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Commodi provident mollitia, repellendus laudantium voluptate
-                dolores delectus itaque est aliquam, obcaecati esse distinctio,
-                quas reprehenderit nostrum placeat temporibus natus doloremque
-                doloribus!
-              </p>
-              <button>Contact Me</button>
-              <button
-                onClick={() =>
-                  this.props.seeAvailabilitiesLawyer(this.props.myLawyer.id)
-                }
-              >
-                View Availabilities
-              </button>
-            </div>
-          </div>
-        </div>
+        {this.renderAvailabilities()}
+        <img src={this.props.myLawyer.image} alt="" />
+        <div>{this.props.myLawyer.full_name}</div>
+        <h1>Description</h1>
+        <p>{this.props.myLawyer.description}</p>
+        <button>Contact Me</button>
+        <button onClick={() => this.showAvailabilities()}>
+          View Availabilities
+        </button>
       </div>
     );
   }
 }
 
 export default LawyerDetails;
+
+// this.props.seeAvailabilitiesLawyer(this.props.myLawyer.id);

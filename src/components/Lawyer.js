@@ -15,12 +15,22 @@ class Lawyer extends Component {
     this.setState({ front: !this.state.front });
   };
 
-  renderImageLawyer = lawyer => {
+  renderImageLawyer = (lawyer, selectLawyer) => {
     return this.state.front ? (
-      <img src={lawyer.image} alt="" onMouseEnter={this.flipImageLawyer} />
+      <div onMouseEnter={this.flipImageLawyer}>
+        <h4>{lawyer.full_name}</h4>
+        <div className="image_wrapper">
+          <img src={lawyer.image} alt="" />
+        </div>
+        <div>{lawyer.full_name}</div>
+        <div>
+          <button onClick={() => selectLawyer(lawyer)}>View Details</button>
+        </div>
+      </div>
     ) : (
-      <React.Fragment>
-        <h1 onMouseLeave={this.flipImageLawyer}>This is the back</h1>
+      <div className="card_back" onMouseLeave={this.flipImageLawyer}>
+        <button onClick={() => selectLawyer(lawyer)}>View Details</button>
+        <h1>This is the back</h1>
         <StarRatings
           rating={this.props.lawyer.rating}
           starRatedColor="orange"
@@ -30,7 +40,7 @@ class Lawyer extends Component {
           starDimension="20px"
           starSpacing="15px"
         />
-      </React.Fragment>
+      </div>
     );
   };
 
@@ -38,47 +48,9 @@ class Lawyer extends Component {
     const { lawyer, selectLawyer } = this.props;
     // debugger;
     return (
-      <Flippy
-        flipOnHover={true} // default false
-        flipOnClick={false} // default false
-        flipDirection="horizontal" // horizontal or vertical
-        ref={r => (this.flippy = r)} // to use toggle method like this.flippy.toggle()
-        // if you pass isFlipped prop component will be controlled component.
-        // and other props, which will go to div
-        style={{ width: "350px", height: "350px" }} /// these are optional style, it is not necessary
-      >
-        <FrontSide
-          style={{
-            backgroundColor: "#FFFFFF",
-            margin: "5px"
-          }}
-        >
-          RICK
-          <div>
-            <div className="image">
-              <img style={{ width: "100%" }} src={lawyer.image} alt="" />
-            </div>
-            <div className="content">
-              <div>{lawyer.full_name}</div>
-            </div>
-          </div>
-        </FrontSide>
-        <BackSide style={{ backgroundColor: "#FFFFFF" }}>
-          ROCKS
-          <StarRatings
-            rating={this.props.lawyer.rating}
-            starRatedColor="orange"
-            changeRating={this.changeRating}
-            numberOfStars={5}
-            name="rating"
-            starDimension="20px"
-            starSpacing="15px"
-          />
-          <div>
-            <button onClick={() => selectLawyer(lawyer)}>View Details</button>
-          </div>
-        </BackSide>
-      </Flippy>
+      <div className="lawyer_list_card">
+        <div>{this.renderImageLawyer(lawyer, selectLawyer)}</div>
+      </div>
     );
   }
 }

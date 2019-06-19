@@ -6,11 +6,11 @@ import "../App.css";
 
 const NavBar = props => {
   return (
-    <nav className="NavBar">
+    <nav>
       <Link style={{ textDecoration: "none" }} to="/">
         <img id="logo" src={"./logo4.png"} alt="logo" />
       </Link>
-      <ul className="nav-list">
+      <ul className="nav_list">
         {props.username ? <li id="name">Hello {props.username}</li> : ""}
         {props.username ? (
           <li>
