@@ -11,14 +11,20 @@ const NavBar = props => {
         <img id="logo" src={"./logo4.png"} alt="logo" />
       </Link>
       <ul className="nav-list">
-        {props.username ? <span id="name">Hello, {props.username}</span> : ""}
-        {props.username ? <span onClick={props.signout}>Sign Out</span> : ""}
+        {props.username ? <li id="name">Hello {props.username}</li> : ""}
+        {props.username ? (
+          <li>
+            <button onClick={props.signout}> Sign Out</button>
+          </li>
+        ) : (
+          ""
+        )}
         {props.username ? (
           ""
         ) : (
           <li>
             <Link style={{ textDecoration: "none" }} to="/signup">
-              <span>Sign Up</span>
+              <button>Sign Up</button>
             </Link>
           </li>
         )}
@@ -28,14 +34,14 @@ const NavBar = props => {
         ) : (
           <li>
             <Link style={{ textDecoration: "none" }} to="/signin">
-              <span>Log In</span>
+              <button>Log In</button>
             </Link>
           </li>
         )}
         {props.username ? (
           <li>
             <Link style={{ textDecoration: "none" }} to="/dashboard">
-              <span onClick={props.studentCall}>My Appointments</span>
+              <button onClick={props.studentCall}>My Appointments</button>
             </Link>
           </li>
         ) : (
@@ -45,7 +51,7 @@ const NavBar = props => {
         {props.username ? (
           <li>
             <Link style={{ textDecoration: "none" }} to="/lawyers">
-              <span id="navless">Lawyers</span>
+              <button id="navless">Lawyers</button>
             </Link>
           </li>
         ) : (

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import {Grid, Image} from 'semantic-ui-react'
 
 // import LawyerDetails from "./LawyerDetails";
 import FilteredLawyers from "./FilteredLawyers";
