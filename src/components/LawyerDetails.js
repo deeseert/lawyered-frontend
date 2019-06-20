@@ -35,13 +35,19 @@ class LawyerDetails extends Component {
     console.log("this is availab:", this.state.lawyerAvailabilities);
     return (
       <div>
+        <h2 className="single-page-title">{this.props.myLawyer.full_name}</h2>
         {this.renderAvailabilities()}
-        <img src={this.props.myLawyer.image} alt="" />
-        <div>{this.props.myLawyer.full_name}</div>
-        <h1>Description</h1>
+        <div>
+          <img id="img-single-page" src={this.props.myLawyer.image} alt="" />
+        </div>
+        <h3>About Me</h3>
         <p>{this.props.myLawyer.description}</p>
-        <button>Contact Me</button>
-        <button onClick={() => this.showAvailabilities()}>
+        <button className="buttonNavar">Contact Me</button>
+        <div className="divider" />
+        <button
+          className="buttonNavar"
+          onClick={() => this.showAvailabilities()}
+        >
           View Availabilities
         </button>
       </div>

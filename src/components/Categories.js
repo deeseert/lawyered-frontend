@@ -45,9 +45,15 @@ class Categories extends React.Component {
     return (
       <div className="categories">
         <h1 id="cath1">Browse categories:</h1>
-        <Grid justify="center" container className={classes.root} spacing={16}>
+        <Grid
+          justify="center"
+          container
+          className={classes.root}
+          spacing={16}
+        >
           <Grid item xs={8}>
             <Grid
+              id="myCategories"
               container
               className="test"
               justify="center"

@@ -14,7 +14,10 @@ const NavBar = props => {
         {props.username ? <li id="name">Hello {props.username}</li> : ""}
         {props.username ? (
           <li>
-            <button onClick={props.signout}> Sign Out</button>
+            <button className="buttonNavar" onClick={props.signout}>
+              {" "}
+              Sign Out
+            </button>
           </li>
         ) : (
           ""
@@ -24,7 +27,7 @@ const NavBar = props => {
         ) : (
           <li>
             <Link style={{ textDecoration: "none" }} to="/signup">
-              <button>Sign Up</button>
+              <button className="buttonNavar">Sign Up</button>
             </Link>
           </li>
         )}
@@ -34,14 +37,16 @@ const NavBar = props => {
         ) : (
           <li>
             <Link style={{ textDecoration: "none" }} to="/signin">
-              <button>Log In</button>
+              <button className="buttonNavar">Log In</button>
             </Link>
           </li>
         )}
         {props.username ? (
           <li>
             <Link style={{ textDecoration: "none" }} to="/dashboard">
-              <button onClick={props.studentCall}>My Appointments</button>
+              <button className="buttonNavar" onClick={props.studentCall}>
+                My Appointments
+              </button>
             </Link>
           </li>
         ) : (
@@ -51,7 +56,7 @@ const NavBar = props => {
         {props.username ? (
           <li>
             <Link style={{ textDecoration: "none" }} to="/lawyers">
-              <button id="navless">Lawyers</button>
+              <button className="buttonNavar" id="navless">Lawyers</button>
             </Link>
           </li>
         ) : (

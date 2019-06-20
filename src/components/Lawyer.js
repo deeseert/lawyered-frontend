@@ -22,15 +22,14 @@ class Lawyer extends Component {
         <div className="image_wrapper">
           <img src={lawyer.image} alt="" />
         </div>
-        <div>{lawyer.full_name}</div>
-        <div>
-          <button onClick={() => selectLawyer(lawyer)}>View Details</button>
-        </div>
       </div>
     ) : (
       <div className="card_back" onMouseLeave={this.flipImageLawyer}>
-        <button onClick={() => selectLawyer(lawyer)}>View Details</button>
-        <h1>This is the back</h1>
+        <h4>
+          {lawyer.full_name} is specialised in {lawyer.field}
+        </h4>
+        <br />
+        Rating:
         <StarRatings
           rating={this.props.lawyer.rating}
           starRatedColor="orange"
@@ -40,6 +39,10 @@ class Lawyer extends Component {
           starDimension="20px"
           starSpacing="15px"
         />
+        <br />
+        <button className="buttonNavar" onClick={() => selectLawyer(lawyer)}>
+          View Details
+        </button>
       </div>
     );
   };
@@ -48,7 +51,7 @@ class Lawyer extends Component {
     const { lawyer, selectLawyer } = this.props;
     // debugger;
     return (
-      <div className="lawyer_list_card">
+      <div id="pic_wrapper" className="lawyer_list_card">
         <div>{this.renderImageLawyer(lawyer, selectLawyer)}</div>
       </div>
     );

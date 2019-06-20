@@ -80,7 +80,7 @@ class SimpleTable extends React.Component {
           <TableHead>
             <TableRow>
               <CustomTableCell>Time</CustomTableCell>
-              <CustomTableCell>Duration</CustomTableCell>
+              <CustomTableCell align="left">Duration</CustomTableCell>
               <CustomTableCell align="right">Day</CustomTableCell>
               <CustomTableCell align="right">Availability</CustomTableCell>
             </TableRow>
@@ -94,7 +94,7 @@ class SimpleTable extends React.Component {
                     {availabilityRow.time}
                   </CustomTableCell>
                   <CustomTableCell align="right">
-                    {availabilityRow.duration} minutes
+                    {availabilityRow.duration}our
                   </CustomTableCell>
                   <CustomTableCell align="right">
                     {availabilityRow.day}

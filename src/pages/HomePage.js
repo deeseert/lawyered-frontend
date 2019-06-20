@@ -33,8 +33,9 @@ const HomePage = props => {
       <button onClick={props.handleSubmit} id="submit">
         Search{" "}
       </button>
-
+    <div>
       <Categories handleCardValue={props.handleCardValue} />
+    </div>
       <Footer />
     </div>
   );
