@@ -19,24 +19,7 @@ class MyAppointment extends React.Component {
     return (
       <Paper className={classes.root}>
         <Table className={classes.table}>
-          <TableBody>
-            <TableRow key={appointment.id}>
-              <CustomTableCell component="th" scope="row">
-                {appointment.time}
-              </CustomTableCell>
-              <CustomTableCell align="right">
-                {appointment.duration} minutes
-              </CustomTableCell>
-              <CustomTableCell align="right">{appointment.day}</CustomTableCell>
-              <CustomTableCell align="right">
-                <button
-                  onClick={() => this.props.deleteAppointment(appointment)}
-                >
-                  Delete Appointment
-                </button>
-              </CustomTableCell>
-            </TableRow>
-          </TableBody>
+          
         </Table>
       </Paper>
     );

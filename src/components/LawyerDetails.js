@@ -16,6 +16,10 @@ class LawyerDetails extends Component {
       .then(data => this.setState({ lawyerAvailabilities: data }));
   }
 
+  renderNewAvailabilities = lawyerAvailabilities => {
+    this.setState({ lawyerAvailabilities });
+  };
+
   showAvailabilities = () => {
     this.setState({ hidden: !this.state.hidden });
   };
@@ -56,5 +60,3 @@ class LawyerDetails extends Component {
 }
 
 export default LawyerDetails;
-
-// this.props.seeAvailabilitiesLawyer(this.props.myLawyer.id);

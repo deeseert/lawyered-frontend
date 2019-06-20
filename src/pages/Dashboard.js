@@ -33,7 +33,6 @@ class Dashboard extends Component {
     );
     this.setState({ appointments: newAppointments });
     this.destroyer(appointment.id);
-    // Availability.makeAppAvAgain();
   };
 
   destroyer = id => {
@@ -74,14 +73,32 @@ class Dashboard extends Component {
                 <CustomTableCell align="right">Availability</CustomTableCell>
               </TableRow>
             </TableHead>
-
-            {appointments.map(appointment => (
-              <MyAppointment
-                key={appointment.id}
-                appointment={appointment}
-                deleteAppointment={this.deleteAppointment}
-              />
-            ))}
+            <TableBody>
+              {appointments.map(appointment => {
+                return (
+                  <TableRow key={appointment.id}>
+                    <CustomTableCell component="th" scope="row">
+                      {appointment.time}
+                    </CustomTableCell>
+                    <CustomTableCell align="right">
+                      {appointment.duration} minutes
+                    </CustomTableCell>
+                    <CustomTableCell align="right">
+                      {appointment.day}
+                    </CustomTableCell>
+                    <CustomTableCell align="right">
+                      <button
+                        onClick={() =>
+                          this.deleteAppointment(appointment)
+                        }
+                      >
+                        Delete Appointment
+                      </button>
+                    </CustomTableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
           </Table>
         </Paper>
       </div>
