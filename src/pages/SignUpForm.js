@@ -39,7 +39,6 @@ class Login extends Component {
           }
           onChange={handleChange}
           margin="normal"
-          // fullWidth="true"
           name="username"
         />
         <br />

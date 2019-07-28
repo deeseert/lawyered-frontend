@@ -65,14 +65,6 @@ class App extends Component {
     });
   };
 
-  // signin = client => {
-  //   debugger;
-  //   this.setState({ username: client.username, userId: client.userId }, () => {
-  //     localStorage.setItem("token", client.token);
-  //     this.props.history.push("/");
-  //   });
-  // };
-
   signout = () => {
     // When you sign out, clear the username from state
     this.setState({ username: "" });
@@ -145,7 +137,6 @@ class App extends Component {
                 selectLawyer={this.selectLawyer}
                 addToMyDashboard={this.addToMyDashboard}
                 cardValue={this.state.cardValue}
-                // row_id={this.state.row_id}
               />
             )}
           />
@@ -155,7 +146,6 @@ class App extends Component {
               const id = props.match.params.id;
               const myLawyer =
                 this.state.lawyers.find(
-                  //type casting
                   lawyer => Number(lawyer.id) === Number(id)
                 ) || this.state.selectedLawyer;
 
@@ -170,7 +160,6 @@ class App extends Component {
                   myLawyer={myLawyer}
                   seeAvailabilitiesLawyer={this.seeAvailabilitiesLawyer}
                   clientId={this.state.clientId}
-                  // selectedLawyer={this.state.selectedLawyer}
                   row_id={this.state.row_id}
                 />
               );

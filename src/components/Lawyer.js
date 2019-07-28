@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Card } from "semantic-ui-react";
+// import { Card } from "semantic-ui-react";
 
 import StarRatings from "react-star-ratings";
 
-import Flippy, { FrontSide, BackSide } from "react-flippy";
+// import Flippy, { FrontSide, BackSide } from "react-flippy";
 
 class Lawyer extends Component {
   state = {

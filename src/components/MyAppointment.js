@@ -15,12 +15,10 @@ class MyAppointment extends React.Component {
   };
 
   render() {
-    const { classes, appointment } = this.props;
+    const { classes } = this.props;
     return (
       <Paper className={classes.root}>
-        <Table className={classes.table}>
-          
-        </Table>
+        <Table className={classes.table} />
       </Paper>
     );
   }

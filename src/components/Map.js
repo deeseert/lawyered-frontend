@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker
-} from "react-google-maps";
+import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import LawyerMarker from "./LawyerMarker";
-import MyMarker from "./MyMarker";
 
 const Map = withScriptjs(
   withGoogleMap(props => {
@@ -21,17 +15,9 @@ const Map = withScriptjs(
       />
     ));
 
-    // const myMarker = props.geolocation.map((value, index) => (
-    //   <MyMarker
-    //     key={index}
-    //     location={{ lat: value.latitude, lng: value.longitude }}
-    //   />
-    // ));
-
     return (
       <GoogleMap defaultZoom={11} center={{ lat: 51.5366, lng: -0.1058 }}>
         {markers}
-        {/* {myMarker} */}
       </GoogleMap>
     );
   })

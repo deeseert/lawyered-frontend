@@ -22,7 +22,7 @@ const HomePage = props => {
         handleSubmit={props.handleSubmit}
         handleSearch={props.handleSearch}
       />
-      <h3 id="titleHomePage">Select The Legal Mater Below</h3>
+      <h3 id="titleHomePage">Select The Legal Matter Below</h3>
       <Select
         value={props.searchValue}
         onChange={props.handleSearch}
@@ -33,9 +33,9 @@ const HomePage = props => {
       <button onClick={props.handleSubmit} id="submit">
         Search{" "}
       </button>
-    <div>
-      <Categories handleCardValue={props.handleCardValue} />
-    </div>
+      <div>
+        <Categories handleCardValue={props.handleCardValue} />
+      </div>
       <Footer />
     </div>
   );

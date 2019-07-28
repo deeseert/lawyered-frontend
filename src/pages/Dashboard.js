@@ -10,9 +10,6 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
 import API from "../API";
-import Availability from "../components/Availability";
-
-import MyAppointment from "../components/MyAppointment";
 
 class Dashboard extends Component {
   state = {
@@ -35,11 +32,12 @@ class Dashboard extends Component {
     this.destroyer(appointment.id);
   };
 
-  destroyer = id => {
-    return fetch(`http://localhost:3000/appointments/${id}`, {
+  destroyer = async id => {
+    const resp = await fetch(`http://localhost:3000/appointments/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" }
-    }).then(resp => resp.json());
+    });
+    return await resp.json();
   };
 
   componentDidMount() {
@@ -56,7 +54,6 @@ class Dashboard extends Component {
     }
   }
   render() {
-    const { classes } = this.props;
     const { appointments } = this.state;
     return (
       <div>
@@ -81,16 +78,14 @@ class Dashboard extends Component {
                       {appointment.time}
                     </CustomTableCell>
                     <CustomTableCell align="right">
-                      {appointment.duration} minutes
+                      {appointment.duration} hour
                     </CustomTableCell>
                     <CustomTableCell align="right">
                       {appointment.day}
                     </CustomTableCell>
                     <CustomTableCell align="right">
                       <button
-                        onClick={() =>
-                          this.deleteAppointment(appointment)
-                        }
+                        onClick={() => this.deleteAppointment(appointment)}
                       >
                         Delete Appointment
                       </button>
