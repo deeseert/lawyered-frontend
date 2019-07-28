@@ -30,11 +30,3 @@ const ImageCarousel = () => (
 );
 
 export default ImageCarousel;
-
-// <div>
-//   <img id="mainPicture" src={pic} alt="home" />
-//   <div className="textpicturewrapper">
-//     <h1 id="picText">What's the issue?</h1>
-//     <h2 id="picTextSub">Find the best lawyer for your needs</h2>
-//   </div>
-// </div>;

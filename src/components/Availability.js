@@ -17,37 +17,6 @@ class SimpleTable extends React.Component {
     row_id: 0
   };
 
-  // This function works but don't know how to call it when clicking 'Delete Appointment in the Dashboard'
-  static makeAppAvAgain() {
-    return fetch(
-      "http://localhost:3000/clients/this.props.clientId/appointments/this.state.row_id",
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: this.state.row_id })
-      }
-    ).then(resp => resp.json());
-  }
-
-  // updateBookedStatus = () => {
-  //   const { booked } = this.state;
-  //   // const booked = this.state.booked;
-  //   this.setState({ booked: !booked });
-  // };
-
-  // updateBookedStatusAndPostAppOnServer = (lawyer, row) => {
-  //   this.setState({ row_id: row.id });
-  //   fetch(
-  //     `http://localhost:3000/lawyers/${lawyer.id}/availabilities/${row.id}`,
-  //     {
-  //       method: "PATCH",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ id: `${row.id}` })
-  //     }
-  //   ).then(resp => resp.json());
-  //   // this.postAppointment(row);
-  // };
-
   postAppointment = availabilityRow => {
     console.log("Appointment booked");
     return fetch("http://localhost:3000/appointments", {
@@ -60,12 +29,10 @@ class SimpleTable extends React.Component {
         availability_id: availabilityRow.id
       })
     }).then(resp => resp.json());
-    //   .then(this.props.callers);
-    // this.props.history.push("/dashboard");
   };
 
   render() {
-    const { classes, myLawyer } = this.props;
+    const { classes } = this.props;
     return (
       <Paper
         id="mammeta"
@@ -94,7 +61,7 @@ class SimpleTable extends React.Component {
                     {availabilityRow.time}
                   </CustomTableCell>
                   <CustomTableCell align="right">
-                    {availabilityRow.duration}our
+                    {availabilityRow.duration} hour
                   </CustomTableCell>
                   <CustomTableCell align="right">
                     {availabilityRow.day}

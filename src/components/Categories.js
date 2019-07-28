@@ -23,12 +23,6 @@ class Categories extends React.Component {
     cardValue: ""
   };
 
-  // handlePageChange = (event) => {
-  //     console.log(event.target.id)
-  //      this.setState({cardValue:event.target.id});
-  //     this.props.history.push('/teachers')
-  // }
-
   render() {
     const { classes } = this.props;
     const { spacing } = this.state;
